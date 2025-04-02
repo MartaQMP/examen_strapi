@@ -369,6 +369,78 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiMenuDiarioMenuDiario extends Struct.CollectionTypeSchema {
+  collectionName: 'menu_diarios';
+  info: {
+    description: '';
+    displayName: 'Daily Menu';
+    pluralName: 'menu-diarios';
+    singularName: 'menu-diario';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Dia: Schema.Attribute.String;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::menu-diario.menu-diario'
+    >;
+    Postre: Schema.Attribute.Relation<'oneToOne', 'api::plato.plato'>;
+    Precio: Schema.Attribute.Decimal & Schema.Attribute.Required;
+    Primero: Schema.Attribute.Relation<'oneToOne', 'api::plato.plato'>;
+    publishedAt: Schema.Attribute.DateTime;
+    Segundo: Schema.Attribute.Relation<'oneToOne', 'api::plato.plato'>;
+    Sum_Precio: Schema.Attribute.Decimal;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiPlatoPlato extends Struct.CollectionTypeSchema {
+  collectionName: 'platos';
+  info: {
+    description: '';
+    displayName: 'Plates';
+    pluralName: 'platos';
+    singularName: 'plato';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    Alergenos: Schema.Attribute.Component<'alergenos.alergenos', true>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Foto: Schema.Attribute.Media<'images', true>;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::plato.plato'>;
+    Nombre: Schema.Attribute.String & Schema.Attribute.Required;
+    Precio: Schema.Attribute.Decimal & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    Tipo: Schema.Attribute.Enumeration<['Primero', 'Segundo', 'Postre']>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface PluginContentReleasesRelease
   extends Struct.CollectionTypeSchema {
   collectionName: 'strapi_releases';
@@ -878,6 +950,8 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::menu-diario.menu-diario': ApiMenuDiarioMenuDiario;
+      'api::plato.plato': ApiPlatoPlato;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

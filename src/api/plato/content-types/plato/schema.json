@@ -1,0 +1,49 @@
+{
+  "kind": "collectionType",
+  "collectionName": "platos",
+  "info": {
+    "singularName": "plato",
+    "pluralName": "platos",
+    "displayName": "Plates",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "Foto": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "Nombre": {
+      "type": "string",
+      "required": true
+    },
+    "Precio": {
+      "type": "decimal",
+      "required": true
+    },
+    "Tipo": {
+      "type": "enumeration",
+      "enum": [
+        "Primero",
+        "Segundo",
+        "Postre"
+      ]
+    },
+    "Alergenos": {
+      "type": "component",
+      "repeatable": true,
+      "component": "alergenos.alergenos"
+    }
+  }
+}
