@@ -389,18 +389,19 @@ export interface ApiMenuDiarioMenuDiario extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    Dia: Schema.Attribute.String;
+    Day: Schema.Attribute.String;
+    Dessert: Schema.Attribute.Relation<'oneToOne', 'api::plato.plato'>;
+    First: Schema.Attribute.Relation<'oneToOne', 'api::plato.plato'>;
     locale: Schema.Attribute.String;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::menu-diario.menu-diario'
     >;
-    Postre: Schema.Attribute.Relation<'oneToOne', 'api::plato.plato'>;
-    Precio: Schema.Attribute.Decimal & Schema.Attribute.Required;
-    Primero: Schema.Attribute.Relation<'oneToOne', 'api::plato.plato'>;
+    Price: Schema.Attribute.Decimal & Schema.Attribute.Required;
+    Price_iva: Schema.Attribute.Decimal;
     publishedAt: Schema.Attribute.DateTime;
-    Segundo: Schema.Attribute.Relation<'oneToOne', 'api::plato.plato'>;
-    Sum_Precio: Schema.Attribute.Decimal;
+    Second: Schema.Attribute.Relation<'oneToOne', 'api::plato.plato'>;
+    Sum_Prices: Schema.Attribute.Decimal;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -424,17 +425,17 @@ export interface ApiPlatoPlato extends Struct.CollectionTypeSchema {
     };
   };
   attributes: {
-    Alergenos: Schema.Attribute.Component<'alergenos.alergenos', true>;
+    Allergens: Schema.Attribute.Component<'alergenos.alergenos', true>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    Foto: Schema.Attribute.Media<'images', true>;
     locale: Schema.Attribute.String;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::plato.plato'>;
-    Nombre: Schema.Attribute.String & Schema.Attribute.Required;
-    Precio: Schema.Attribute.Decimal & Schema.Attribute.Required;
+    Name: Schema.Attribute.String & Schema.Attribute.Required;
+    Photo: Schema.Attribute.Media<'images', true>;
+    Price: Schema.Attribute.Decimal & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
-    Tipo: Schema.Attribute.Enumeration<['Primero', 'Segundo', 'Postre']>;
+    Type: Schema.Attribute.Enumeration<['First', 'Second', 'Dessert']>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

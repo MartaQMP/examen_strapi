@@ -16,7 +16,7 @@
     }
   },
   "attributes": {
-    "Foto": {
+    "Photo": {
       "type": "media",
       "multiple": true,
       "required": false,
@@ -24,23 +24,23 @@
         "images"
       ]
     },
-    "Nombre": {
+    "Name": {
       "type": "string",
       "required": true
     },
-    "Precio": {
+    "Price": {
       "type": "decimal",
       "required": true
     },
-    "Tipo": {
+    "Type": {
       "type": "enumeration",
       "enum": [
-        "Primero",
-        "Segundo",
-        "Postre"
+        "First",
+        "Second",
+        "Dessert"
       ]
     },
-    "Alergenos": {
+    "Allergens": {
       "type": "component",
       "repeatable": true,
       "component": "alergenos.alergenos"

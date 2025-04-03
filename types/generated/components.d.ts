@@ -4,13 +4,13 @@ export interface AlergenosAlergenos extends Struct.ComponentSchema {
   collectionName: 'components_alergenos_alergenos';
   info: {
     description: '';
-    displayName: 'Alergenos';
+    displayName: 'Allergens';
     icon: 'cup';
   };
   attributes: {
-    Descripcion: Schema.Attribute.Text;
-    Icono: Schema.Attribute.Media<'images', true>;
-    Nombre: Schema.Attribute.String & Schema.Attribute.Required;
+    Description: Schema.Attribute.Text;
+    Icon: Schema.Attribute.Media<'images', true>;
+    Name: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 

@@ -16,30 +16,33 @@
     }
   },
   "attributes": {
-    "Dia": {
+    "Day": {
       "type": "string"
     },
-    "Primero": {
+    "First": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::plato.plato"
     },
-    "Precio": {
+    "Price": {
       "type": "decimal",
       "required": true
     },
-    "Sum_Precio": {
+    "Sum_Prices": {
       "type": "decimal"
     },
-    "Segundo": {
+    "Second": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::plato.plato"
     },
-    "Postre": {
+    "Dessert": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::plato.plato"
+    },
+    "Price_iva": {
+      "type": "decimal"
     }
   }
 }

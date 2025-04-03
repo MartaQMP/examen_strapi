@@ -1,21 +1,21 @@
 {
   "collectionName": "components_alergenos_alergenos",
   "info": {
-    "displayName": "Alergenos",
+    "displayName": "Allergens",
     "icon": "cup",
     "description": ""
   },
   "options": {},
   "attributes": {
-    "Nombre": {
+    "Name": {
       "type": "string",
       "required": true,
       "unique": false
     },
-    "Descripcion": {
+    "Description": {
       "type": "text"
     },
-    "Icono": {
+    "Icon": {
       "type": "media",
       "multiple": true,
       "required": false,
