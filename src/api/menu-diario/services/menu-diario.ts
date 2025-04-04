@@ -13,18 +13,27 @@ export default factories.createCoreService(
           id: idFirst,
         },
       });
+      if (!firstPlate) {
+        return { error: `Plate with id ${firstPlate} not found.` };
+      }
 
       const secondPlate = await strapi.db.query("api::plato.plato").findOne({
         where: {
           id: idSecond,
         },
       });
+      if (!secondPlate) {
+        return { error: `Plate with id ${secondPlate} not found.` };
+      }
 
       const dessert = await strapi.db.query("api::plato.plato").findOne({
         where: {
           id: idDessert,
         },
       });
+      if (!dessert) {
+        return { error: `Plate with id ${dessert} not found.` };
+      }
 
       const priceWithIva = priceMenu * 1.21;
 
