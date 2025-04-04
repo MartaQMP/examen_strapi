@@ -42,48 +42,32 @@ export default factories.createCoreService(
     },
 
     async validateType(params) {
-      if (
-        params.data.First &&
-        Array.isArray(params.data.First.connect) &&
-        params.data.First.connect.length > 0
-      ) {
-        const firstPlate = await strapi.db.query("api::plato.plato").findOne({
-          where: { id: params.data.First.connect.map((item) => item.id) },
-        });
+      const checkPlateType = async (plateData, expectedType) => {
+        if (
+          plateData &&
+          Array.isArray(plateData.connect) &&
+          plateData.connect.length > 0
+        ) {
+          const plate = await strapi.db.query("api::plato.plato").findOne({
+            where: { id: plateData.connect.map((item) => item.id) },
+          });
 
-        if (firstPlate.Type !== "First") {
-          return false;
+          return plate.Type === expectedType;
         }
-      }
+        return true;
+      };
 
-      if (
-        params.data.Second &&
-        Array.isArray(params.data.Second.connect) &&
-        params.data.Second.connect.length > 0
-      ) {
-        const secondPlate = await strapi.db.query("api::plato.plato").findOne({
-          where: { id: params.data.Second.connect.map((item) => item.id) },
-        });
+      const isValidFirst = await checkPlateType(params.data.First, "First");
+      if (!isValidFirst) return false;
 
-        if (secondPlate.Type !== "Second") {
-          return false;
-        }
-      }
+      const isValidSecond = await checkPlateType(params.data.Second, "Second");
+      if (!isValidSecond) return false;
 
-      if (
-        params.data.Dessert &&
-        Array.isArray(params.data.Dessert.connect) &&
-        params.data.Dessert.connect.length > 0
-      ) {
-        const dessertPlate = await strapi.db.query("api::plato.plato").findOne({
-          where: { id: params.data.Dessert.connect.map((item) => item.id) },
-        });
-
-        if (dessertPlate.Type !== "Dessert") {
-          return false;
-        }
-      }
-      return true;
+      const isValidDessert = await checkPlateType(
+        params.data.Dessert,
+        "Dessert"
+      );
+      if (!isValidDessert) return false;
     },
   })
 );
